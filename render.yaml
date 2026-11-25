@@ -1,0 +1,45 @@
+# Render Blueprint for Coach Seek. This file only defines the Coach Seek worker.
+# It does not reference or manage Coach Sol or helperProject.
+services:
+  - type: worker
+    name: coach-seek
+    runtime: python
+    region: virginia
+    plan: 0.5c-512mb
+    buildCommand: pip install -r requirements.txt
+    startCommand: python -m coach_seek
+    disk:
+      name: coach-seek-data
+      mountPath: /var/data
+      sizeGB: 1
+    envVars:
+      - key: DISCORD_TOKEN
+        sync: false
+      - key: DEEPSEEK_API_KEY
+        sync: false
+      - key: DEEPSEEK_MODEL
+        value: deepseek-flash
+      - key: DEEPSEEK_BASE_URL
+        value: https://api.deepseek.com
+      - key: DEEPSEEK_REASONING_EFFORT
+        value: high
+      - key: DEEPSEEK_THINKING
+        value: enabled
+      - key: DEEPSEEK_MAX_TOKENS
+        value: "16000"
+      - key: DEEPSEEK_WEB_SEARCH
+        value: enabled
+      - key: DEEPSEEK_SAFETY_LEVEL
+        value: high
+      - key: LOG_LEVEL
+        value: INFO
+      - key: MEMORY_DB_PATH
+        value: /var/data/memory.sqlite
+      - key: DIGEST_DB_PATH
+        value: /var/data/digest.sqlite
+      - key: DIGEST_ENABLED
+        value: enabled
+      - key: DIGEST_INTERVAL_HOURS
+        value: "24"
+      - key: DIGEST_INITIAL_DELAY_SECONDS
+        value: "60"

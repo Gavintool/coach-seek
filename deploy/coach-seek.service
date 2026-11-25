@@ -1,0 +1,20 @@
+[Unit]
+Description=Coach Seek Discord bot
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+WorkingDirectory=/workspace/coach-seek
+EnvironmentFile=/workspace/coach-seek/.env
+ExecStartPre=/bin/mkdir -p /workspace/coach-seek/logs /workspace/coach-seek/data
+ExecStart=/workspace/coach-seek/.venv/bin/python -u -m coach_seek
+Restart=on-failure
+RestartSec=10
+KillSignal=SIGINT
+TimeoutStopSec=15
+UMask=0077
+StandardOutput=append:/workspace/coach-seek/logs/coach-seek.log
+StandardError=append:/workspace/coach-seek/logs/coach-seek.log
+
+[Install]
+WantedBy=default.target
