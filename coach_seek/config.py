@@ -77,8 +77,8 @@ class Config:
         if thinking not in {"enabled", "disabled"}:
             raise ValueError("DEEPSEEK_THINKING must be enabled or disabled.")
         effort = setting("DEEPSEEK_REASONING_EFFORT", "high").lower()
-        if effort not in {"low", "high", "max"}:
-            raise ValueError("DEEPSEEK_REASONING_EFFORT must be low, high, or max.")
+        if effort not in {"low", "medium", "high", "max"}:
+            raise ValueError("DEEPSEEK_REASONING_EFFORT must be low, medium, high, or max.")
         try:
             max_tokens = int(setting("DEEPSEEK_MAX_TOKENS", "16000"))
         except ValueError:

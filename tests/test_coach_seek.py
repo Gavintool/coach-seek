@@ -408,3 +408,12 @@ class ConfigTests(unittest.TestCase):
             ):
                 with self.assertRaisesRegex(ValueError, name):
                     Config.from_env()
+
+    def test_reasoning_effort_accepts_medium(self):
+        with patch("coach_seek.config.load_dotenv"), patch.dict(
+            "os.environ",
+            {"DISCORD_TOKEN": "mock-token", "DEEPSEEK_API_KEY": "mock-key", "DEEPSEEK_REASONING_EFFORT": "medium"},
+            clear=True,
+        ):
+            self.assertEqual(Config.from_env().reasoning_effort, "medium")
+

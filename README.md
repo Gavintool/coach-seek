@@ -126,7 +126,7 @@ A free web service would spin down and is a poor fit for a long-running Discord 
 | `DISCORD_CHANNEL_ID` | Unset | Numeric ID of the automatic-reply channel |
 | `ADVISOR_CHANNEL_ID` | Unset | Alias used when `DISCORD_CHANNEL_ID` is blank |
 | `DEEPSEEK_THINKING` | `enabled` | `enabled` or `disabled` |
-| `DEEPSEEK_REASONING_EFFORT` | `high` | `low`, `high`, or `max` for thinking mode |
+| `DEEPSEEK_REASONING_EFFORT` | `high` | `low`, `medium`, `high`, or `max` for thinking mode. DeepSeek maps `medium` to `high`. |
 | `DEEPSEEK_MAX_TOKENS` | `16000` | Output token limit per request, including thinking tokens |
 | `DEEPSEEK_WEB_SEARCH` | `enabled` | Set to `disabled` to omit both web tools |
 | `DEEPSEEK_SAFETY_LEVEL` | `high` | Server-side content safety level, `high` or `low` |
